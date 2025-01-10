@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart' as main;
+import '../main.dart' as main;
 import 'signup.dart';
 
 class LoginPage extends StatefulWidget {
@@ -35,15 +35,24 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login - EduQuest247'),
+        title: const Text('EduQuest247'),
       ),
-      body: Container(
+      body:
+       Container(
         color: Colors.white,
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
+               SizedBox(
+              height: 400,
+              width: 400,
+              child: Image.asset(
+                'assets/images/picture123.jpg',
+                fit: BoxFit.contain,
+              ),
+            ),
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(

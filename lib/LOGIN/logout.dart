@@ -1,41 +1,41 @@
+import 'package:eduquest_final/ACCOUNT/icon_account.dart';
 import 'package:flutter/material.dart';
-import 'main.dart' as main;
-import 'signup.dart';
+import 'package:eduquest_final/LOGIN/login.dart';
+import 'package:get/get.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  LoginPageState createState() => LoginPageState();
+void main() {
+  runApp(EduQuestApp(
+    home: LogOutPage(),
+    title: '',
+  ));
 }
 
-class LoginPageState extends State<LoginPage> {
+class LogOutPage extends StatefulWidget {
+  const LogOutPage({super.key});
+
+  @override
+  LogOutPageState createState() => LogOutPageState();
+}
+
+class LogOutPageState extends State<LogOutPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
+  void _logout() {
     if (_formKey.currentState!.validate()) {
       // Perform login logic here
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => main.MainPage()),
-      );
+      Get.to(() => LogOutPage());
+    } else {
+      Get.offAll(() => const LoginPage());
     }
-  }
-
-  void _navigateToSignUp() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignUpPage()),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login - EduQuest247'),
+        title: const Text('EduQuest247'),
       ),
       body: Container(
         color: Colors.white,
@@ -44,6 +44,14 @@ class LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 400,
+                width: 400,
+                child: Image.asset(
+                  'assets/images/logout.jpg',
+                  fit: BoxFit.contain,
+                ),
+              ),
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -75,13 +83,11 @@ class LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _login,
-                child: const Text('Login'),
+                onPressed: _logout,
+                child: const Text('Log Out'),
               ),
-              TextButton(
-                onPressed: _navigateToSignUp,
-                child: const Text('Don\'t have an account? Sign up'),
-              ),
+              const SizedBox(height: 20),
+              Text('EduQuest247 wishes you GoodBye!')
             ],
           ),
         ),

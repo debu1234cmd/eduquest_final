@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'logout.dart';
 
 void main() {
   runApp(EduQuestApp());
@@ -7,18 +6,21 @@ void main() {
 
 class EduQuestApp extends StatelessWidget {
   const EduQuestApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Eduquest247',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: const Color.fromARGB(255, 111, 53, 165),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 111, 53, 165),
+          foregroundColor: Colors.white,
+        ),
       ),
       home: StylishPage(),
       routes: {
-        '/logout': (context) => LogoutPage(),
         '/main': (context) => MainPage(),
       },
     );
@@ -32,21 +34,21 @@ class StylishPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Menu-EduQuest247'),
-        backgroundColor: Colors.blue,
+        title: Text('Menu Bar'),
+        backgroundColor: const Color.fromARGB(255, 111, 53, 165),
         actions: [
           IconButton(
             icon: Icon(Icons.info_outline),
             onPressed: () {
-              _showInfoDialog(context, 'Information', 'This is an info dialog.');
+              _showInfoDialog(
+                  context, 'Information', 'Eduquest247 is a comprehensive educational consultancy app designed to simplify the learning journey for students, parents, and educators. Whether you are exploring academic pathways, searching for the right courses, or seeking expert guidance on scholarships and career planning, Eduquest247 is your go-to resource for all educational needs.');
             },
           ),
         ],
       ),
-      body:
-       ListView(
+      body: ListView(
         children: [
-           _buildListTile(
+          _buildListTile(
             context,
             'About Us',
             Icons.info_rounded,
@@ -95,15 +97,25 @@ class StylishPage extends StatelessWidget {
             () => _showInfoDialog(context, 'Terms & Conditions',
                 'By using EduQuest247, you agree to use the app for lawful purposes only. You are responsible for keeping your account details confidential. We own all app content, and you may not reproduce or distribute it without permission. EduQuest247 is not liable for any decisions based on the information provided. We reserve the right to modify these terms at any time, and your continued use indicates acceptance of these changes.'),
           ),
-          SizedBox(height: 20), // Adding some spacing before buttons
-          ElevatedButton(
-            onPressed: () {
-              // Button action
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Set the background color to red
+          _buildListTile(
+            context,
+            'Contact Us',
+            Icons.article_outlined,
+            () => _showInfoDialog(context, 'Contact Us',
+                'For any queries or feedback, please contact us at 6289397289 through phone or mail us at eduquest247@gmail.com'),
+          ),
+          SizedBox(height: 20),// Adding some spacing before buttons
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: 400,
+                width: 400,
+                child: Image.asset(
+                  'assets/images/edulogo.jpg',
+                  fit: BoxFit.contain,
+                ),
               ),
-            child: Text('Log Out'),
+            ],
           ),
         ],
       ),
@@ -130,27 +142,12 @@ class StylishPage extends StatelessWidget {
     );
   }
 
-  ListTile _buildListTile(BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  ListTile _buildListTile(
+      BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
       onTap: onTap,
-    );
-  }
-}
-
-class LogoutPage extends StatelessWidget {
-  const LogoutPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Logout Page'),
-      ),
-      body: Center(
-        child: Text('You have been logged out.'),
-      ),
     );
   }
 }

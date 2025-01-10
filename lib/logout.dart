@@ -1,39 +1,4 @@
 import 'package:flutter/material.dart';
-void main() {
-  runApp(const EduQuestApp());
-}
-
-class EduQuestApp extends StatelessWidget {
-  const EduQuestApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Log Out from your EduQuest Account',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.light,
-      ),
-      initialRoute: '/logout_page',
-      routes: {
-        '/logout_page': (context) => const LogOutPage(),
-        '/main': (context) => const MainPage(),
-      },
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text('See You Soon...')),
-    );
-  }
-}
 
 class LogOutPage extends StatelessWidget {
   const LogOutPage({super.key});
@@ -41,58 +6,34 @@ class LogOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.blue[100]!, Colors.blue[400]!],
-          ),
-        ),
-        child: Center(
-          child: Card(
-            margin: const EdgeInsets.all(20),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.account_circle,
-                    size: 80,
-                    color: Colors.blue,
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/main');
-                    },
-                    child: const Text('Log Out'),
-                  ),
-                ],
+      appBar: AppBar(
+        title: const Text('Log Out'),
+        backgroundColor: const Color.fromARGB(255, 111, 53, 165),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Are you sure you want to log out?',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              ),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/login');
+              },
+              child: const Text(
+                'Log Out',
+                style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
